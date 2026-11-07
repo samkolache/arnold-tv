@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --gray-0:   250 251 253;
+    --gray-50:  241 243 246;
+    --gray-100: 230 233 239;
+    --gray-200: 213 218 227;
+    --gray-400: 154 163 180;
+    --gray-600:  91 100 120;
+    --gray-800:  52  59  77;
+    --gray-900:  34  41  58;
+    --gray-950:  23  28  40;
+
+    --blue-100: 220 227 238;
+    --blue-300: 157 176 207;
+    --blue-500:  79 109 158;
+    --blue-600:  65  91 134;
+    --blue-700:  52  73 107;
+
+    --gold-100: 246 235 215;
+    --gold-400: 217 178 111;
+    --gold-700: 138 106  46;
+
+    --green-100: 225 241 232;
+    --green-500:  62 154 106;
+    --green-700:  43 107  74;
+
+    --amber-100: 251 239 214;
+    --amber-500: 212 154  42;
+    --amber-700: 138  90  16;
+
+    --red-100: 251 230 227;
+    --red-500: 201  71  58;
+    --red-700: 142  42  33;
+}
+
+:root {
+    --bg-canvas:  var(--gray-50);
+    --bg-surface: var(--gray-0);
+    --bg-sunken:  var(--gray-100);
+    --bg-inverse: var(--gray-900);
+
+    --text-primary:    var(--gray-900);
+    --text-secondary:  var(--gray-600);
+    --text-disabled:   var(--gray-400);
+    --text-on-inverse: var(--gray-0);
+    --text-link:       var(--blue-500);
+
+    --border-subtle: var(--gray-200);
+    --border-strong: var(--gray-400);
+    --border-focus:  var(--blue-500);
+
+    --action-primary:         var(--blue-500);
+    --action-primary-hover:   var(--blue-600);
+    --action-primary-pressed: var(--blue-700);
+    --action-soft:            var(--blue-100);
+    --action-disabled:        var(--gray-100);
+
+    --highlight-pop:      var(--gold-400);
+    --highlight-pop-soft: var(--gold-100);
+    --highlight-pop-text: var(--gold-700);
+
+    --status-success-bg:   var(--green-100);
+    --status-success:      var(--green-500);
+    --status-success-text: var(--green-700);
+
+    --status-warning-bg:   var(--amber-100);
+    --status-warning:      var(--amber-500);
+    --status-warning-text: var(--amber-700);
+
+    --status-error-bg:   var(--red-100);
+    --status-error:      var(--red-500);
+    --status-error-text: var(--red-700);
+
+    --status-neutral: var(--gray-600);
+}
+
+@layer components {
+    .heading-h1 {
+        font-family: theme('fontFamily.display');
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 36px;
+        letter-spacing: -0.02em;
+    }
+    .heading-h2 {
+        font-family: theme('fontFamily.display');
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 22px;
+        letter-spacing: -0.01em;
+    }
+    .heading-h3 {
+        font-family: theme('fontFamily.display');
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .label-button {
+        font-family: theme('fontFamily.display');
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .label-micro {
+        font-family: theme('fontFamily.display');
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+    .label-field {
+        font-family: theme('fontFamily.sans');
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .body-md {
+        font-family: theme('fontFamily.sans');
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 23px;
+    }
+    .body-sm {
+        font-family: theme('fontFamily.sans');
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .caption {
+        font-family: theme('fontFamily.sans');
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 18px;
+    }
+}
+
+@layer base {
+    body {
+        @apply bg-canvas text-primary body-md;
+    }
+}

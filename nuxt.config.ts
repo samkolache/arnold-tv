@@ -3,21 +3,33 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase', '@vueuse/nuxt', 'reka-ui/nuxt', '@nuxt/test-utils/module'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/supabase',
+    '@vueuse/nuxt',
+    'reka-ui/nuxt',
+    '@nuxt/test-utils/module',
+    '@nuxt/fonts',
+  ],
 
   typescript: {
     strict: true,
   },
 
+  fonts: {
+    families: [
+      {name: 'Montserrat', weights: [600,700]},
+      {name: 'Source Sans 3', weights: [400,600]}
+    ]
+  },
+
   supabase: {
-    // Auth redirect is disabled until auth pages exist
+    
     redirect: false,
-    // Point at generated types once a schema exists: supabase gen types ... > types/database.types.ts
     types: false,
   },
 
   runtimeConfig: {
-    // Server-only; set via NUXT_ANTHROPIC_API_KEY
     anthropicApiKey: '',
   },
 })
