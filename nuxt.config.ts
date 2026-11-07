@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     'reka-ui/nuxt',
     '@nuxt/test-utils/module',
     '@nuxt/fonts',
+    '@nuxt/icon',
   ],
 
   typescript: {
