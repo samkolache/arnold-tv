@@ -1,0 +1,37 @@
+{
+  "name": "arnold-tv",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "@vueuse/core": "^15.0.0",
+    "date-fns": "^4.4.0",
+    "date-fns-tz": "^3.2.0",
+    "nuxt": "^3.21.11",
+    "qrcode": "^1.5.4",
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "@nuxt/test-utils": "^4.3.4",
+    "@nuxtjs/supabase": "^2.1.0",
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "@types/qrcode": "^1.5.6",
+    "@vue/test-utils": "^2.5.1",
+    "@vueuse/nuxt": "^15.0.0",
+    "happy-dom": "^21.0.4",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0",
+    "vue-tsc": "^3.3.14"
+  }
+}
