@@ -83,6 +83,9 @@ const classes = computed(() => [
   <Primitive
     :as="as"
     :as-child="asChild"
+    data-slot="button"
+    :data-variant="variant"
+    :data-size="size"
     :class="classes"
     :type="isNativeButton ? 'button' : undefined"
     :disabled="isNativeButton ? isDisabled : undefined"
@@ -92,6 +95,7 @@ const classes = computed(() => [
   >
     <span
       v-if="loading"
+      data-slot="button-spinner"
       class="size-4 animate-spin rounded-full border-2 border-current border-r-transparent"
       aria-hidden="true"
     />
