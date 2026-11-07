@@ -13,6 +13,7 @@
     --gray-900:  34  41  58;
     --gray-950:  23  28  40;
 
+    --blue-50:  239 243 249;
     --blue-100: 220 227 238;
     --blue-300: 157 176 207;
     --blue-500:  79 109 158;
@@ -57,6 +58,10 @@
     --action-primary-pressed: var(--blue-700);
     --action-soft:            var(--blue-100);
     --action-disabled:        var(--gray-100);
+
+    /* Tinted backgrounds for outline (secondary) + ghost buttons */
+    --action-subtle-hover:    var(--blue-50);
+    --action-subtle-pressed:  var(--blue-100);
 
     --highlight-pop:      var(--gold-400);
     --highlight-pop-soft: var(--gold-100);

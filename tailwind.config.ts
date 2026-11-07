@@ -18,6 +18,10 @@ export default <Partial<Config>>{
         },
         soft: c('action-soft'),
         disabled: c('action-disabled'),
+        subtle: {
+          hover: c('action-subtle-hover'),
+          pressed: c('action-subtle-pressed'),
+        },
       },
 
       highlight: {
