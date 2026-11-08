@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { AiIssue, Flyer } from '~/types'
 import { groupAiIssues } from '~/utils/attention'
 import { describeFlyerStatus } from '~/utils/flyerDisplay'
-import { buildRotation, getRotationPosition } from '~/utils/rotation'
+import { buildRotation, buildSlideRotation, getRotationPosition } from '~/utils/rotation'
 
 const tz = 'America/Chicago'
 const now = new Date('2026-11-08T18:00:00Z')
@@ -10,6 +10,7 @@ const id = () => crypto.randomUUID()
 
 const slide = (headline: string) => ({
     id: id(),
+    kind: 'announcement' as const,
     tag: null,
     headline,
     days: [],
@@ -19,6 +20,7 @@ const slide = (headline: string) => ({
     supportingLine: null,
     signUpUrl: null,
     qrLabel: null,
+    durationSeconds: 10,
 })
 
 const flyer = (overrides: Partial<Flyer>): Flyer => ({
@@ -69,6 +71,24 @@ describe('buildRotation', () => {
 
     it('handles an empty rotation', () => {
         expect(getRotationPosition([], 1000).loopSeconds).toBe(0)
+    })
+})
+
+describe('buildSlideRotation', () => {
+    const slides = buildSlideRotation([classes, holiday, smoothie], tz, now)
+    const flyers = buildRotation([classes, holiday, smoothie], tz, now)
+
+    it('lists every live slide in rotation order', () => {
+        expect(slides.map((item) => item.flyerId)).toEqual([holiday.id, holiday.id, classes.id, classes.id, classes.id])
+    })
+
+    it('stays in step with the dashboard rotation', () => {
+        for (const ms of [0, 12_000, 25_000, 49_000, 61_000]) {
+            const slide = slides[getRotationPosition(slides, ms).activeIndex]!
+            const flyer = flyers[getRotationPosition(flyers, ms).activeIndex]!
+            expect([slide.flyerId, slide.id]).toContain(flyer.id)
+        }
+        expect(getRotationPosition(slides, 0).loopSeconds).toBe(getRotationPosition(flyers, 0).loopSeconds)
     })
 })
 

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import type { Brand } from '~/types'
 import type { FlyerPreview } from '~/types/flyer'
+import type { RotationSlide } from '~/utils/rotation'
 
 interface Props {
     flyers: FlyerPreview[]
@@ -10,10 +12,18 @@ interface Props {
     secondsUntilNext: number
     loopSeconds: number
     manageTo?: string
+    slide?: RotationSlide | null
+    nextSlide?: RotationSlide | null
+    brand?: Brand | null
+    logo?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
     activeIndex: 0,
+    slide: null,
+    nextSlide: null,
+    brand: null,
+    logo: null,
 })
 
 const emit = defineEmits<{
@@ -21,13 +31,10 @@ const emit = defineEmits<{
 }>()
 
 const activeFlyer = computed(() => props.flyers[props.activeIndex])
-
-const nextFlyer = computed(() => props.flyers[(props.activeIndex + 1) % props.flyers.length])
 </script>
 
 <template>
     <UiCard
-        variant="emphasis"
         padding="md"
         data-slot="informational-slide-card"
         class="grid grid-cols-[auto_minmax(0,1fr)] gap-6"
@@ -42,17 +49,22 @@ const nextFlyer = computed(() => props.flyers[(props.activeIndex + 1) % props.fl
                 </p>
             </header>
 
-            <img
-                v-if="activeFlyer?.image"
-                :src="activeFlyer.image"
-                :alt="`Live preview: ${activeFlyer.title}`"
+            <div
+                v-if="slide"
                 data-slot="informational-slide-card-preview"
-                class="mt-4 aspect-video h-[400px] rounded-md bg-sunken object-cover"
+                class="mt-4 aspect-video h-[320px] overflow-hidden rounded-md"
             >
+                <TvSlide
+                    :slide="slide.slide"
+                    :transition-key="slide.id"
+                    :brand="brand"
+                    :logo="logo"
+                />
+            </div>
             <div
                 v-else
                 data-slot="informational-slide-card-preview"
-                class="mt-4 flex aspect-video h-[400px] items-center justify-center rounded-md bg-sunken p-6 text-center"
+                class="mt-4 flex aspect-video h-[320px] items-center justify-center rounded-md bg-sunken p-6 text-center"
             >
                 <p class="heading-h2 text-secondary">{{ activeFlyer?.title ?? 'Nothing on the TV right now' }}</p>
             </div>
@@ -65,11 +77,11 @@ const nextFlyer = computed(() => props.flyers[(props.activeIndex + 1) % props.fl
             />
 
             <p
-                v-if="nextFlyer"
+                v-if="nextSlide"
                 data-slot="informational-slide-card-next"
                 class="caption mt-1 text-secondary"
             >
-                Next in {{ secondsUntilNext }} s: {{ nextFlyer.title }}
+                Next in {{ secondsUntilNext }} s: {{ nextSlide.slide.headline }}
             </p>
         </section>
 

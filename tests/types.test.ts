@@ -16,6 +16,7 @@ const flyer = {
     slides: [
         {
             id: id(),
+            kind: 'class',
             tag: 'FREE CLASS',
             headline: 'Yoga w/ Sebastien',
             days: ['mon', 'wed'],
@@ -25,6 +26,7 @@ const flyer = {
             supportingLine: null,
             signUpUrl: 'https://example.com/signup',
             qrLabel: 'Scan to save your spot',
+            durationSeconds: 10,
         },
     ],
     qrScans: 42,
@@ -56,6 +58,7 @@ describe('schemas', () => {
             logo: null,
             timezone: 'America/New_York',
             gymHours: { mon: hours, tue: hours, wed: hours, thu: hours, fri: hours, sat: hours, sun: null },
+            brand: null,
         }
         expect(OrganizationSchema.safeParse(org).success).toBe(true)
         expect(OrganizationSchema.safeParse({ ...org, timezone: 'Mars/Base' }).success).toBe(false)

@@ -11,7 +11,6 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: 'Home', icon: Home, to: '/' },
   { label: 'Flyers', icon: File, to: '/flyers' },
-  { label: 'Settings', icon: Settings },
 ]
 
 const { data: organization } = useOrganization()
@@ -54,7 +53,7 @@ function isActive(item: NavItem) {
     </div>
 
     <div class="flex flex-col gap-4">
-      <UiButton variant="ghost" class="w-full">
+      <UiButton variant="ghost" class="w-full" :as="NuxtLink" to="/slideshow" target="_blank">
         Open TV player
         <ExternalLink class="size-5" />
       </UiButton>
