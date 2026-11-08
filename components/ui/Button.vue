@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { Primitive, type PrimitiveProps } from 'reka-ui'
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'link'
+type Variant = 'primary' | 'secondary' | 'ghost' | 'link' | 'danger'
 type Size = 'sm' | 'md' | 'lg'
 
 interface Props extends PrimitiveProps {
@@ -50,6 +50,14 @@ const variants: Record<Variant, string> = {
     'active:bg-action-subtle-pressed active:text-action-primary-pressed',
     'disabled:bg-transparent disabled:text-disabled',
     'aria-disabled:bg-transparent aria-disabled:text-disabled',
+  ].join(' '),
+
+  danger: [
+    'rounded-md bg-status-error text-on-inverse',
+    'hover:bg-status-error-text',
+    'active:bg-status-error-text',
+    'disabled:bg-action-disabled disabled:text-disabled',
+    'aria-disabled:bg-action-disabled aria-disabled:text-disabled',
   ].join(' '),
 
   link: [
