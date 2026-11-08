@@ -32,6 +32,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     anthropicApiKey: '',
+    basicAuthUser: '',
+    basicAuthPassword: '',
     public: {
       organizationSlug: '',
     },
