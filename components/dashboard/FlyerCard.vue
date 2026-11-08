@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Copy, Ellipsis, Pause, Pencil, Play } from 'lucide-vue-next'
+import { Copy, Ellipsis, Pause, Pencil, Play, Trash2 } from 'lucide-vue-next'
 import type { FlyerPreview } from '~/types/flyer'
 
 interface Props {
@@ -17,6 +17,7 @@ const emit = defineEmits<{
     pause: []
     resume: []
     duplicate: []
+    delete: []
 }>()
 
 const meta = computed(() =>
@@ -58,6 +59,7 @@ const meta = computed(() =>
                     <UiPopoverItem v-if="paused" :icon="Play" @click="emit('resume')">Resume</UiPopoverItem>
                     <UiPopoverItem v-else :icon="Pause" @click="emit('pause')">Pause</UiPopoverItem>
                     <UiPopoverItem :icon="Copy" @click="emit('duplicate')">Duplicate</UiPopoverItem>
+                    <UiPopoverItem :icon="Trash2" tone="danger" @click="emit('delete')">Delete</UiPopoverItem>
                 </UiPopover>
             </div>
 
