@@ -8,14 +8,12 @@ interface Props {
   suggestedType: FlyerType
   gymHours?: GymHours | null
   brand?: Brand | null
-  logo?: string | null
   error?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
   gymHours: null,
   brand: null,
-  logo: null,
   error: null,
 })
 
@@ -139,7 +137,6 @@ const endDateModel = computed({
         v-if="flyer.slides[0]"
         :slide="flyer.slides[0]"
         :brand="brand"
-        :logo="logo"
         class="rounded-sm"
       />
       <p class="heading-h3 text-primary">

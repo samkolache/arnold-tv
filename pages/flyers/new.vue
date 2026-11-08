@@ -299,7 +299,6 @@ onBeforeUnmount(() => {
           :regenerate-error="regenerateError"
           @regenerate="regenerate"
           :brand="organization?.brand"
-          :logo="organization?.logo"
         />
 
         <div class="h-px w-full bg-action-soft" aria-hidden="true" />
@@ -317,7 +316,6 @@ onBeforeUnmount(() => {
           :suggested-type="draft.flyer.type"
           :gym-hours="organization?.gymHours"
           :brand="organization?.brand"
-          :logo="organization?.logo"
           :error="scheduleError"
           @edit-slides="step = 2"
         />

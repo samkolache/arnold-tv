@@ -15,7 +15,6 @@ interface Props {
     slide?: RotationSlide | null
     nextSlide?: RotationSlide | null
     brand?: Brand | null
-    logo?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -23,7 +22,6 @@ const props = withDefaults(defineProps<Props>(), {
     slide: null,
     nextSlide: null,
     brand: null,
-    logo: null,
 })
 
 const emit = defineEmits<{
@@ -58,7 +56,6 @@ const activeFlyer = computed(() => props.flyers[props.activeIndex])
                     :slide="slide.slide"
                     :transition-key="slide.id"
                     :brand="brand"
-                    :logo="logo"
                 />
             </div>
             <div

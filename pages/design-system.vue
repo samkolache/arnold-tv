@@ -35,7 +35,7 @@ const palettes = computed(() => [
       <h2 class="label-micro text-secondary">{{ palette.title }}</h2>
       <div class="grid gap-6 sm:grid-cols-2">
         <figure v-for="slide in examples" :key="slide.kind" class="min-w-0 space-y-2">
-          <TvSlide :slide="slide" :brand="palette.brand" :logo="organization?.logo" class="rounded-lg shadow-card" />
+          <TvSlide :slide="slide" :brand="palette.brand" class="rounded-lg shadow-card" />
           <figcaption class="label-field text-secondary">{{ slide.kind }}</figcaption>
         </figure>
       </div>

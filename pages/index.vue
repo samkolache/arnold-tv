@@ -75,7 +75,6 @@ function topSlideCaption(thisWeek: WeekTotals, lastWeek: WeekTotals) {
         :slide="currentSlide"
         :next-slide="nextSlide"
         :brand="organization?.brand"
-        :logo="organization?.logo"
         manage-to="/flyers"
       />
     </ClientOnly>

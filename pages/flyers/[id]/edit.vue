@@ -154,7 +154,7 @@ useHead({ title: () => `Edit ${flyer.value?.title ?? 'flyer'}` })
         </aside>
 
         <section v-if="selected" data-slot="flyer-edit-slide-editor" class="flex min-w-0 flex-1 flex-col gap-6">
-          <TvSlide :slide="selected" :brand="organization?.brand" :logo="organization?.logo" class="rounded-lg shadow-card" />
+          <TvSlide :slide="selected" :brand="organization?.brand" class="rounded-lg shadow-card" />
 
           <div class="grid grid-cols-2 gap-x-6 gap-y-4">
             <UiInput

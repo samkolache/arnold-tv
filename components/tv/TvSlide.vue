@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import QRCode from 'qrcode'
 import type { Brand, DayOfWeek, HexColor, SlideInput, SlideKind } from '~/types'
 import { brandCssVariables, closestColor, mostReadableOn } from '~/utils/contrast'
 
@@ -14,13 +15,11 @@ interface SlideKindStyle {
 interface Props {
     slide: TvSlideContent
     brand?: Brand | null
-    logo?: string | null
     transitionKey?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
     brand: null,
-    logo: null,
     transitionKey: null,
 })
 
@@ -62,8 +61,25 @@ const tagColor = computed(() => {
 
 const tag = computed(() => props.slide.tag ?? kind.value.defaultTag)
 
+const qr = computed(() => {
+    const url = props.slide.signUpUrl
+    if (!url) return null
+    try {
+        const { size, data } = QRCode.create(url, { errorCorrectionLevel: 'M' }).modules
+        let path = ''
+        for (let row = 0; row < size; row++) {
+            for (let column = 0; column < size; column++) {
+                if (data[row * size + column]) path += `M${column} ${row}h1v1h-1z`
+            }
+        }
+        return { size, path }
+    } catch {
+        return null
+    }
+})
+
 const qrLabel = computed(() => {
-    if (!kind.value.defaultQrLabel || !props.slide.signUpUrl) return null
+    if (!qr.value) return null
     return props.slide.qrLabel ?? kind.value.defaultQrLabel
 })
 
@@ -87,19 +103,12 @@ const schedule = computed(() => [props.slide.when, days.value].filter(Boolean).j
         class="tv-slide relative aspect-video w-full overflow-hidden bg-[var(--tv-background)] text-[var(--tv-text)]"
         :style="style"
     >
-        <img
-            v-if="logo"
-            :src="logo"
-            alt=""
-            data-slot="tv-slide-logo"
-            class="absolute right-[4cqw] top-[4cqw] h-[7cqw] w-auto object-contain"
-        >
-
         <Transition name="tv-swap" mode="out-in" :duration="SWAP_DURATION">
             <div
                 :key="transitionKey ?? 'slide'"
                 data-slot="tv-slide-body"
-                class="flex h-full flex-col justify-center gap-[1.6cqw] px-[7cqw] pb-[3cqw]"
+                class="relative flex h-full flex-col justify-center gap-[1.6cqw] px-[7cqw] pb-[3cqw]"
+                :class="qr ? 'pr-[34cqw]' : ''"
                 :style="bodyStyle"
             >
                 <span
@@ -125,9 +134,34 @@ const schedule = computed(() => [props.slide.when, days.value].filter(Boolean).j
                     {{ slide.supportingLine }}
                 </p>
 
-                <p v-if="qrLabel" data-slot="tv-slide-qr-label" class="font-sans text-[2.4cqw] font-semibold opacity-75">
-                    {{ qrLabel }}
-                </p>
+                <div
+                    v-if="qr"
+                    data-slot="tv-slide-qr"
+                    class="absolute inset-y-0 right-[7cqw] flex w-[22cqw] flex-col items-center justify-center gap-[1.4cqw] pb-[3cqw]"
+                >
+                    <div
+                        data-slot="tv-slide-qr-code"
+                        class="aspect-square w-full rounded-[1.6cqw] bg-[var(--tv-text)] p-[1.8cqw] text-[var(--tv-background)]"
+                    >
+                        <svg
+                            :viewBox="`0 0 ${qr.size} ${qr.size}`"
+                            class="size-full"
+                            fill="currentColor"
+                            shape-rendering="crispEdges"
+                            role="img"
+                            aria-label="QR code"
+                        >
+                            <path :d="qr.path" />
+                        </svg>
+                    </div>
+                    <p
+                        v-if="qrLabel"
+                        data-slot="tv-slide-qr-label"
+                        class="text-balance text-center font-sans text-[2.4cqw] font-semibold leading-tight"
+                    >
+                        {{ qrLabel }}
+                    </p>
+                </div>
             </div>
         </Transition>
 

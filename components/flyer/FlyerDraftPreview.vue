@@ -6,14 +6,12 @@ import type { Brand, FlyerDraft, FlyerDraftChange, FlyerDraftIssue } from '~/typ
 interface Props {
   draft: FlyerDraft
   brand?: Brand | null
-  logo?: string | null
   regenerating?: boolean
   regenerateError?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
   brand: null,
-  logo: null,
   regenerating: false,
   regenerateError: null,
 })
@@ -55,7 +53,7 @@ const flyerChanges = computed(() => notesFor(props.draft.changes, null))
     <div data-slot="flyer-draft-preview-body" class="flex w-full items-start gap-8">
       <section data-slot="flyer-draft-preview-slide" class="flex min-w-0 flex-1 flex-col gap-4">
         <div data-slot="flyer-draft-preview-stage" class="relative">
-          <TvSlide v-if="slide" :slide="slide" :brand="brand" :logo="logo" class="rounded-lg shadow-card" />
+          <TvSlide v-if="slide" :slide="slide" :brand="brand" class="rounded-lg shadow-card" />
           <div
             v-if="regenerating"
             data-slot="flyer-draft-preview-regenerating"

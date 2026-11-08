@@ -57,7 +57,6 @@ useHead({ title: 'TV' })
           :slide="current.slide"
           :transition-key="current.id"
           :brand="shownOrganization?.brand"
-          :logo="shownOrganization?.logo"
           class="absolute inset-0"
         />
         <div
@@ -65,7 +64,6 @@ useHead({ title: 'TV' })
           data-slot="slideshow-empty"
           class="absolute inset-0 flex flex-col items-center justify-center gap-6 text-on-inverse"
         >
-          <img v-if="shownOrganization?.logo" :src="shownOrganization.logo" alt="" class="h-[12%] w-auto object-contain">
           <p class="heading-h1 opacity-80">Nothing is scheduled right now</p>
         </div>
       </Transition>
