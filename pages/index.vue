@@ -4,6 +4,8 @@ import type { WeekTotals } from '~/types'
 
 definePageMeta({ layout: 'dashboard' })
 
+const NuxtLink = resolveComponent('NuxtLink')
+
 const [
   { data: organization, error: organizationError },
   { data: flyers, error: flyersError },
@@ -13,7 +15,7 @@ const [
 
 const loadError = computed(() => organizationError.value ?? flyersError.value ?? statsError.value ?? aiIssuesError.value)
 
-const now = useNow({ scheduler: (tick) => useIntervalFn(tick, 1000) })
+const now = useNow({ scheduler: (tick) => useIntervalFn(tick, 250) })
 const timezone = computed(() => organization.value?.timezone ?? 'UTC')
 
 const today = computed(() => formatInTimeZone(now.value, timezone.value, 'EEEE, MMM d · h:mm a'))
@@ -27,6 +29,15 @@ const greeting = computed(() => {
 
 const rotation = computed(() => buildRotation(flyers.value, timezone.value, now.value))
 const position = computed(() => getRotationPosition(rotation.value, now.value.getTime()))
+
+const slideRotation = computed(() => buildSlideRotation(flyers.value, timezone.value, now.value))
+const slidePosition = computed(() => getRotationPosition(slideRotation.value, now.value.getTime()))
+const currentSlide = computed(() => slideRotation.value[slidePosition.value.activeIndex] ?? null)
+const nextSlide = computed(() =>
+  slideRotation.value.length > 1
+    ? slideRotation.value[(slidePosition.value.activeIndex + 1) % slideRotation.value.length] ?? null
+    : null,
+)
 
 const attention = computed(() => groupAiIssues(aiIssues.value, flyers.value))
 
@@ -47,7 +58,7 @@ function topSlideCaption(thisWeek: WeekTotals, lastWeek: WeekTotals) {
         </ClientOnly>
         <h1 class="heading-h1">{{ greeting }}</h1>
       </div>
-      <UiButton>+ New Flyer</UiButton>
+      <UiButton :as="NuxtLink" to="/flyers/new">+ New Flyer</UiButton>
     </header>
 
     <p v-if="loadError" class="body-sm text-secondary">
@@ -58,9 +69,12 @@ function topSlideCaption(thisWeek: WeekTotals, lastWeek: WeekTotals) {
       <DashboardInformationalSlideCard
         :flyers="rotation"
         :active-index="position.activeIndex"
-        :progress="position.progress"
-        :seconds-until-next="position.secondsUntilNext"
+        :progress="slidePosition.progress"
+        :seconds-until-next="slidePosition.secondsUntilNext"
         :loop-seconds="position.loopSeconds"
+        :slide="currentSlide"
+        :next-slide="nextSlide"
+        :brand="organization?.brand"
         manage-to="/flyers"
       />
     </ClientOnly>

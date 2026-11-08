@@ -61,4 +61,5 @@ export interface FlyerPreview {
     meta: string
     image: string | null
     slides?: number
+    seconds?: number
 }
