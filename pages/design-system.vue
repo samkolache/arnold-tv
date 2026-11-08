@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { SlideInputSchema, type SlideInput } from '~/types'
 
+definePageMeta({
+  middleware: () => {
+    if (!import.meta.dev) return abortNavigation(createError({ statusCode: 404, statusMessage: 'Page not found' }))
+  },
+})
+
 const { data: organization } = await useOrganization()
 
 const SIGN_UP = 'https://example.com/sign-up'

@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { Calendar, ClipboardCheck, Mail, Search, Upload } from 'lucide-vue-next'
 
+definePageMeta({
+  middleware: () => {
+    if (!import.meta.dev) return abortNavigation(createError({ statusCode: 404, statusMessage: 'Page not found' }))
+  },
+})
+
 const variants = ['primary', 'secondary', 'ghost', 'link', 'danger'] as const
 const sizes = ['sm', 'md', 'lg'] as const
 const NuxtLink = resolveComponent('NuxtLink')
