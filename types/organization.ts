@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { BrandSchema } from './brand'
 import { DayOfWeekSchema, IdSchema, TimeSchema, TimezoneSchema } from './shared'
 
 export const OpeningHoursSchema = z
@@ -20,6 +21,7 @@ export const OrganizationSchema = z.object({
     logo: z.url().nullable(),
     timezone: TimezoneSchema,
     gymHours: GymHoursSchema,
+    brand: BrandSchema.nullable(),
 })
 
 export type OpeningHours = z.infer<typeof OpeningHoursSchema>
