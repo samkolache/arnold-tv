@@ -13,6 +13,7 @@
     --gray-900:  34  41  58;
     --gray-950:  23  28  40;
 
+    --blue-50:  239 243 249;
     --blue-100: 220 227 238;
     --blue-300: 157 176 207;
     --blue-500:  79 109 158;
@@ -34,11 +35,16 @@
     --red-100: 251 230 227;
     --red-500: 201  71  58;
     --red-700: 142  42  33;
+
+    --purple-100: 239 233 250;
+    --purple-500: 124  92 196;
+    --purple-700:  86  58 148;
 }
 
 :root {
-    --bg-canvas:  var(--gray-50);
-    --bg-surface: var(--gray-0);
+    --bg-canvas:  var(--gray-100);
+    --bg-surface: var(--gray-50);
+    --bg-raised:  var(--gray-0);
     --bg-sunken:  var(--gray-100);
     --bg-inverse: var(--gray-900);
 
@@ -58,9 +64,17 @@
     --action-soft:            var(--blue-100);
     --action-disabled:        var(--gray-100);
 
+    /* Tinted backgrounds for outline (secondary) + ghost buttons */
+    --action-subtle-hover:    var(--blue-50);
+    --action-subtle-pressed:  var(--blue-100);
+
     --highlight-pop:      var(--gold-400);
     --highlight-pop-soft: var(--gold-100);
     --highlight-pop-text: var(--gold-700);
+
+    --highlight-ai:      var(--purple-500);
+    --highlight-ai-soft: var(--purple-100);
+    --highlight-ai-text: var(--purple-700);
 
     --status-success-bg:   var(--green-100);
     --status-success:      var(--green-500);
@@ -84,6 +98,13 @@
         font-size: 30px;
         line-height: 36px;
         letter-spacing: -0.02em;
+    }
+    .heading-stat {
+        font-family: theme('fontFamily.display');
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 28px;
+        letter-spacing: -0.01em;
     }
     .heading-h2 {
         font-family: theme('fontFamily.display');

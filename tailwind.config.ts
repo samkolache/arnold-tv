@@ -18,6 +18,10 @@ export default <Partial<Config>>{
         },
         soft: c('action-soft'),
         disabled: c('action-disabled'),
+        subtle: {
+          hover: c('action-subtle-hover'),
+          pressed: c('action-subtle-pressed'),
+        },
       },
 
       highlight: {
@@ -25,6 +29,11 @@ export default <Partial<Config>>{
           DEFAULT: c('highlight-pop'),
           soft: c('highlight-pop-soft'),
           text: c('highlight-pop-text'),
+        },
+        ai: {
+          DEFAULT: c('highlight-ai'),
+          soft: c('highlight-ai-soft'),
+          text: c('highlight-ai-text'),
         },
       },
 
@@ -67,6 +76,7 @@ export default <Partial<Config>>{
       backgroundColor: {
         canvas: c('bg-canvas'),
         surface: c('bg-surface'),
+        raised: c('bg-raised'),
         sunken: c('bg-sunken'),
         inverse: c('bg-inverse'),
       },
@@ -83,6 +93,9 @@ export default <Partial<Config>>{
       },
       ringColor: {
         focus: 'rgb(var(--border-focus) / 0.25)',
+      },
+      boxShadow: {
+        card: '0 0 0 1px rgb(var(--gray-950) / 0.04), 0 1px 2px rgb(var(--gray-950) / 0.06), 0 2px 8px rgb(var(--gray-950) / 0.06)',
       },
     },
   },
