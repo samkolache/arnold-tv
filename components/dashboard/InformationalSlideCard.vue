@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Flyer } from '~/types/flyer'
+import type { FlyerPreview } from '~/types/flyer'
 
 interface Props {
-    flyers: Flyer[]
+    flyers: FlyerPreview[]
     activeIndex?: number
     status: string
     progress: number

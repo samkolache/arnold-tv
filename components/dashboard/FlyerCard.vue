@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Copy, Ellipsis, Pause, Pencil } from 'lucide-vue-next'
-import type { Flyer } from '~/types/flyer'
+import type { FlyerPreview } from '~/types/flyer'
 
 interface Props {
-    flyer: Flyer
+    flyer: FlyerPreview
     status?: string
     scans?: number
 }
