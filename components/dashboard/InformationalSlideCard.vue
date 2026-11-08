@@ -5,7 +5,7 @@ import type { FlyerPreview } from '~/types/flyer'
 interface Props {
     flyers: FlyerPreview[]
     activeIndex?: number
-    status: string
+    status?: string
     progress: number
     secondsUntilNext: number
     loopSeconds: number
@@ -37,18 +37,25 @@ const nextFlyer = computed(() => props.flyers[(props.activeIndex + 1) % props.fl
                 <h2 data-slot="informational-slide-card-title" class="heading-h3 text-primary">
                     On the gym TV now
                 </h2>
-                <p data-slot="informational-slide-card-status" class="body-sm text-secondary">
+                <p v-if="status" data-slot="informational-slide-card-status" class="body-sm text-secondary">
                     {{ status }}
                 </p>
             </header>
 
             <img
-                v-if="activeFlyer"
+                v-if="activeFlyer?.image"
                 :src="activeFlyer.image"
                 :alt="`Live preview: ${activeFlyer.title}`"
                 data-slot="informational-slide-card-preview"
                 class="mt-4 aspect-video h-[400px] rounded-md bg-sunken object-cover"
             >
+            <div
+                v-else
+                data-slot="informational-slide-card-preview"
+                class="mt-4 flex aspect-video h-[400px] items-center justify-center rounded-md bg-sunken p-6 text-center"
+            >
+                <p class="heading-h2 text-secondary">{{ activeFlyer?.title ?? 'Nothing on the TV right now' }}</p>
+            </div>
 
             <UiProgress
                 :model-value="progress"

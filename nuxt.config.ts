@@ -32,5 +32,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     anthropicApiKey: '',
+    public: {
+      organizationSlug: '',
+    },
   },
 })

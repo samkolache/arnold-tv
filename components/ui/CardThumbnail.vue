@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  src: string
+  src?: string | null
   alt?: string
 }
 
@@ -12,6 +12,7 @@ withDefaults(defineProps<Props>(), {
 <template>
   <div data-slot="card-thumbnail" class="aspect-video w-full overflow-hidden bg-sunken">
     <img
+      v-if="src"
       :src="src"
       :alt="alt"
       data-slot="card-thumbnail-image"

@@ -14,6 +14,8 @@ const navItems: NavItem[] = [
   { label: 'Settings', icon: Settings },
 ]
 
+const { data: organization } = useOrganization()
+
 const route = useRoute()
 const NuxtLink = resolveComponent('NuxtLink')
 
@@ -28,8 +30,8 @@ function isActive(item: NavItem) {
   <aside class="border-r border-subtle bg-surface p-4 flex flex-col justify-between">
     <div>
       <div class="flex items-center gap-2 mb-6">
-        <UiAvatar name="arnold" src="./arnold-logo.jpeg" size="md" />
-        <span class="text-lg font-bold">The Arnold</span>
+        <UiAvatar :name="organization?.name ?? ''" :src="organization?.logo ?? undefined" size="md" />
+        <span class="text-lg font-bold">{{ organization?.name }}</span>
       </div>
       <nav>
         <ul class="flex flex-col gap-1">

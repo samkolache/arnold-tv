@@ -11,6 +11,9 @@ export const AiIssueFieldSchema = z.enum([
     'times',
     'supportingLine',
     'signUpUrl',
+    'tag',
+    'when',
+    'qrLabel',
 ])
 
 export const AiIssueSchema = z.object({

@@ -48,11 +48,17 @@ const formatTitle = (flyer: FlyerPreview) =>
                     class="flex items-center gap-3 rounded-md p-2 transition-colors duration-150 data-[state=active]:bg-sunken"
                 >
                     <img
+                        v-if="flyer.image"
                         :src="flyer.image"
                         alt=""
                         data-slot="flyer-rotation-thumbnail"
                         class="h-9 w-16 shrink-0 rounded-sm object-cover"
                     >
+                    <div
+                        v-else
+                        data-slot="flyer-rotation-thumbnail"
+                        class="h-9 w-16 shrink-0 rounded-sm bg-sunken"
+                    />
                     <div data-slot="flyer-rotation-text" class="flex min-w-0 flex-1 flex-col gap-0.5">
                         <p data-slot="flyer-rotation-title" class="heading-h3 truncate text-primary">
                             {{ formatTitle(flyer) }}
