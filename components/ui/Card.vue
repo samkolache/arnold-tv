@@ -16,11 +16,11 @@ const props = withDefaults(defineProps<Props>(), {
   padding: 'md',
 })
 
-const base = 'rounded-md bg-surface text-primary'
+const base = 'rounded-xl bg-surface text-primary'
 
 const variants: Record<Variant, string> = {
-  default: 'border border-subtle',
-  emphasis: 'border-2 border-strong',
+  default: 'shadow-card',
+  emphasis: 'border-2 border-strong shadow-card',
 }
 
 const paddings: Record<Padding, string> = {

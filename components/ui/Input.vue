@@ -30,7 +30,7 @@ defineOptions({ inheritAttrs: false })
 const modelValue = defineModel<string | number>()
 
 const base = [
-  'w-full rounded-md border border-subtle bg-surface text-primary',
+  'w-full rounded-md border border-subtle bg-raised text-primary',
   'placeholder:text-disabled',
   'transition-colors duration-150',
   'hover:border-strong',

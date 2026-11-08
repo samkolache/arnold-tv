@@ -30,6 +30,11 @@ export default <Partial<Config>>{
           soft: c('highlight-pop-soft'),
           text: c('highlight-pop-text'),
         },
+        ai: {
+          DEFAULT: c('highlight-ai'),
+          soft: c('highlight-ai-soft'),
+          text: c('highlight-ai-text'),
+        },
       },
 
       status: {
@@ -71,6 +76,7 @@ export default <Partial<Config>>{
       backgroundColor: {
         canvas: c('bg-canvas'),
         surface: c('bg-surface'),
+        raised: c('bg-raised'),
         sunken: c('bg-sunken'),
         inverse: c('bg-inverse'),
       },
@@ -87,6 +93,9 @@ export default <Partial<Config>>{
       },
       ringColor: {
         focus: 'rgb(var(--border-focus) / 0.25)',
+      },
+      boxShadow: {
+        card: '0 0 0 1px rgb(var(--gray-950) / 0.04), 0 1px 2px rgb(var(--gray-950) / 0.06), 0 2px 8px rgb(var(--gray-950) / 0.06)',
       },
     },
   },
