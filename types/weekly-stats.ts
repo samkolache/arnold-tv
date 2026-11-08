@@ -1,24 +1,24 @@
 import { z } from 'zod'
-import { IdSchema, IsoDateSchema } from './shared'
+import { IdSchema } from './shared'
 
-export const TopFlyerSchema = z.object({
+export const TopSlideSchema = z.object({
+    slideId: IdSchema,
     flyerId: IdSchema,
-    title: z.string(),
+    headline: z.string(),
     scans: z.int().nonnegative(),
 })
 
 export const WeekTotalsSchema = z.object({
     scans: z.int().nonnegative(),
     signUps: z.int().nonnegative(),
-    topFlyer: TopFlyerSchema.nullable(),
+    topSlide: TopSlideSchema.nullable(),
 })
 
 export const WeeklyStatsSchema = WeekTotalsSchema.extend({
     organizationId: IdSchema,
-    weekStart: IsoDateSchema,
     lastWeek: WeekTotalsSchema,
 })
 
-export type TopFlyer = z.infer<typeof TopFlyerSchema>
+export type TopSlide = z.infer<typeof TopSlideSchema>
 export type WeekTotals = z.infer<typeof WeekTotalsSchema>
 export type WeeklyStats = z.infer<typeof WeeklyStatsSchema>

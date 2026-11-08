@@ -8,6 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "seed": "node --env-file=.env scripts/seed.ts",
     "test": "vitest",
     "test:run": "vitest run",
     "typecheck": "nuxt typecheck"

@@ -16,11 +16,15 @@ const flyer = {
     slides: [
         {
             id: id(),
+            tag: 'FREE CLASS',
             headline: 'Yoga w/ Sebastien',
             days: ['mon', 'wed'],
             times: ['18:00'],
+            extraTimes: { mon: ['19:00'] },
+            when: null,
             supportingLine: null,
             signUpUrl: 'https://example.com/signup',
+            qrLabel: 'Scan to save your spot',
         },
     ],
     qrScans: 42,
@@ -71,13 +75,12 @@ describe('schemas', () => {
             }).success,
         ).toBe(true)
 
-        const week = { scans: 42, signUps: 10, topFlyer: { flyerId: flyer.id, title: 'Yoga', scans: 20 } }
+        const week = { scans: 42, signUps: 10, topSlide: { slideId: flyer.slides[0]!.id, flyerId: flyer.id, headline: 'Yoga', scans: 20 } }
         expect(
             WeeklyStatsSchema.safeParse({
                 ...week,
                 organizationId: id(),
-                weekStart: '2026-11-02',
-                lastWeek: { scans: 30, signUps: 15, topFlyer: null },
+                lastWeek: { scans: 30, signUps: 15, topSlide: null },
             }).success,
         ).toBe(true)
     })
