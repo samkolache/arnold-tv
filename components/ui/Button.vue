@@ -53,8 +53,8 @@ const variants: Record<Variant, string> = {
   ].join(' '),
 
   link: [
-    'rounded-sm bg-transparent text-link underline-offset-4',
-    'hover:underline hover:text-action-primary-hover',
+    'rounded-sm bg-transparent text-link underline underline-offset-4',
+    'hover:text-action-primary-hover',
     'active:text-action-primary-pressed',
     'disabled:text-disabled disabled:no-underline',
     'aria-disabled:text-disabled aria-disabled:no-underline',
