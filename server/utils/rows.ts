@@ -1,4 +1,5 @@
-import type { AiIssue, AiIssueField, DayOfWeek, ExtraTimes, Flyer, FlyerType, GymHours, Organization, Slide, SlideInput } from '~/types'
+import { SLIDE_SECONDS } from '~/types'
+import type { AiIssue, Brand, AiIssueField, DayOfWeek, ExtraTimes, Flyer, FlyerType, GymHours, Organization, Slide, SlideInput, SlideKind } from '~/types'
 
 export interface OrganizationRow {
     id: string
@@ -7,6 +8,7 @@ export interface OrganizationRow {
     logo: string | null
     timezone: string
     gym_hours: GymHours
+    brand: Brand | null
     created_at: string
 }
 
@@ -14,6 +16,7 @@ export interface SlideRow {
     id: string
     flyer_id: string
     position: number
+    kind: SlideKind
     tag: string | null
     headline: string
     days: DayOfWeek[]
@@ -23,6 +26,7 @@ export interface SlideRow {
     supporting_line: string | null
     sign_up_url: string | null
     qr_label: string | null
+    duration_seconds: number
     created_at: string
     qr_scans?: { count: number }[]
 }
@@ -69,12 +73,14 @@ export function toOrganization(row: OrganizationRow): Organization {
         logo: row.logo,
         timezone: row.timezone,
         gymHours: row.gym_hours,
+        brand: row.brand,
     }
 }
 
 export function toSlide(row: SlideRow): Slide {
     return {
         id: row.id,
+        kind: row.kind ?? 'announcement',
         tag: row.tag,
         headline: row.headline,
         days: row.days,
@@ -84,6 +90,7 @@ export function toSlide(row: SlideRow): Slide {
         supportingLine: row.supporting_line,
         signUpUrl: row.sign_up_url,
         qrLabel: row.qr_label,
+        durationSeconds: row.duration_seconds ?? SLIDE_SECONDS.default,
     }
 }
 
@@ -130,6 +137,7 @@ export function toSlideRows(flyerId: string, slides: SlideInput[]) {
         id: slide.id ?? crypto.randomUUID(),
         flyer_id: flyerId,
         position,
+        kind: slide.kind,
         tag: slide.tag,
         headline: slide.headline,
         days: slide.days,
@@ -139,5 +147,6 @@ export function toSlideRows(flyerId: string, slides: SlideInput[]) {
         supporting_line: slide.supportingLine,
         sign_up_url: slide.signUpUrl,
         qr_label: slide.qrLabel,
+        duration_seconds: slide.durationSeconds,
     }))
 }
