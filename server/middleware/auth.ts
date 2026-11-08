@@ -1,24 +1,17 @@
-import { timingSafeEqual } from 'node:crypto'
-
-function matches(received: string, expected: string) {
-    const a = Buffer.from(received)
-    const b = Buffer.from(expected)
-    return a.length === b.length && timingSafeEqual(a, b)
-}
+const PUBLIC_PATHS = ['/login', '/api/auth/login', '/favicon.ico']
+const PUBLIC_PREFIXES = ['/_nuxt/', '/_fonts/', '/__nuxt', '/api/_nuxt_icon']
 
 export default defineEventHandler((event) => {
-    const { basicAuthUser, basicAuthPassword } = useRuntimeConfig(event)
-    if (!basicAuthUser || !basicAuthPassword) return
+    if (!authConfig(event)) return
 
-    const header = getHeader(event, 'authorization') ?? ''
-    const [scheme, encoded = ''] = header.split(' ')
-    const decoded = scheme?.toLowerCase() === 'basic' ? Buffer.from(encoded, 'base64').toString() : ''
-    const separator = decoded.indexOf(':')
-    const user = separator === -1 ? '' : decoded.slice(0, separator)
-    const password = separator === -1 ? '' : decoded.slice(separator + 1)
+    const path = getRequestURL(event).pathname
+    if (PUBLIC_PATHS.includes(path) || PUBLIC_PREFIXES.some((prefix) => path.startsWith(prefix))) return
+    if (hasValidSession(event)) return
 
-    if (matches(user, basicAuthUser) && matches(password, basicAuthPassword)) return
+    if (path.startsWith('/api/')) {
+        throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+    }
 
-    setResponseHeader(event, 'WWW-Authenticate', 'Basic realm="Arnold TV", charset="UTF-8"')
-    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+    const target = path === '/' ? '/login' : `/login?redirect=${encodeURIComponent(path)}`
+    return sendRedirect(event, target, 302)
 })
