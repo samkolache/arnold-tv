@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { Flyer } from '~/types/flyer'
+import type { FlyerPreview } from '~/types/flyer'
 
 definePageMeta({ layout: 'dashboard' })
 
 interface FlyerListing {
-  flyer: Flyer
+  flyer: FlyerPreview
   status: string
   scans?: number
 }

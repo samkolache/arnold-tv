@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, resolveComponent } from 'vue'
 import { ArrowRight } from 'lucide-vue-next'
-import type { Flyer } from '~/types/flyer'
+import type { FlyerPreview } from '~/types/flyer'
 
 interface Props {
-    flyers: Flyer[]
+    flyers: FlyerPreview[]
     activeIndex?: number
     loopSeconds: number
     manageTo?: string
@@ -24,7 +24,7 @@ const slideCount = computed(() =>
     props.flyers.reduce((total, flyer) => total + (flyer.slides ?? 1), 0),
 )
 
-const formatTitle = (flyer: Flyer) =>
+const formatTitle = (flyer: FlyerPreview) =>
     flyer.slides && flyer.slides > 1 ? `${flyer.title} · ${flyer.slides} slides` : flyer.title
 </script>
 

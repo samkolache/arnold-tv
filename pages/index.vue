@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Flyer } from '~/types/flyer'
+import type { FlyerPreview } from '~/types/flyer'
 
 definePageMeta({ layout: 'dashboard' })
 
-const flyers: Flyer[] = [
+const flyers: FlyerPreview[] = [
   { id: 'holiday-hours', title: 'Holiday hours', meta: 'comes off after Nov 27', image: '/example-flyer.png', slides: 2 },
   { id: 'boxing', title: 'Boxing & Kickboxing', meta: 'Free class schedule · weekly', image: '/example-flyer.png' },
   { id: 'afrobeats-yoga', title: 'Afrobeats Yoga', meta: 'Free class schedule · weekly', image: '/example-flyer.png' },
