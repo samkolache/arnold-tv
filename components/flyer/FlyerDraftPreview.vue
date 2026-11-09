@@ -45,12 +45,12 @@ const flyerChanges = computed(() => notesFor(props.draft.changes, null))
       </p>
       <p class="caption text-secondary">
         QR code:
-        <a v-if="draft.qrUrl" :href="draft.qrUrl" target="_blank" rel="noopener" class="text-link underline">{{ draft.qrUrl }}</a>
+        <a v-if="draft.qrUrl" :href="draft.qrUrl" target="_blank" rel="noopener" class="text-link underline max-lg:break-all">{{ draft.qrUrl }}</a>
         <span v-else>none found</span>
       </p>
     </header>
 
-    <div data-slot="flyer-draft-preview-body" class="flex w-full items-start gap-8">
+    <div data-slot="flyer-draft-preview-body" class="flex w-full items-start gap-8 max-lg:flex-col max-lg:gap-6">
       <section data-slot="flyer-draft-preview-slide" class="flex min-w-0 flex-1 flex-col gap-4">
         <div data-slot="flyer-draft-preview-stage" class="relative">
           <TvSlide v-if="slide" :slide="slide" :brand="brand" class="rounded-lg shadow-card" />
@@ -67,7 +67,7 @@ const flyerChanges = computed(() => notesFor(props.draft.changes, null))
         <nav
           data-slot="flyer-draft-preview-pager"
           aria-label="Slides"
-          class="flex items-center justify-between"
+          class="flex items-center justify-between max-sm:flex-wrap max-sm:gap-3"
         >
           <p class="label-field text-primary">Slide {{ slideIndex + 1 }} of {{ slides.length }}</p>
           <div class="flex items-center gap-4">
@@ -96,7 +96,7 @@ const flyerChanges = computed(() => notesFor(props.draft.changes, null))
         </nav>
       </section>
 
-      <aside data-slot="flyer-draft-preview-notes" class="flex w-[300px] shrink-0 flex-col gap-4">
+      <aside data-slot="flyer-draft-preview-notes" class="flex w-[300px] shrink-0 flex-col gap-4 max-lg:w-full">
         <div class="flex flex-col gap-2">
           <p class="label-micro text-secondary">This slide</p>
           <p v-if="!slideIssues.length && !slideChanges.length" class="body-sm text-secondary">Nothing flagged.</p>

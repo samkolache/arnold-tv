@@ -229,8 +229,8 @@ onBeforeUnmount(() => {
 
     <main
       :class="[
-        'flex w-full flex-col items-start px-8 pb-16',
-        step === 3 ? 'max-w-[1184px] gap-8 pt-10' : 'max-w-[1024px] gap-6 pt-12',
+        'flex w-full flex-col items-start px-8 pb-16 max-sm:px-4',
+        step === 3 ? 'max-w-[1184px] gap-8 pt-10 max-sm:gap-6 max-sm:pt-6' : 'max-w-[1024px] gap-6 pt-12 max-sm:pt-6',
       ]"
     >
       <template v-if="step === 1 && !reading">

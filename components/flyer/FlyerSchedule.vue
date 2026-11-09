@@ -72,7 +72,7 @@ const endDateModel = computed({
 </script>
 
 <template>
-  <div data-slot="flyer-schedule" class="flex w-full items-start gap-8">
+  <div data-slot="flyer-schedule" class="flex w-full items-start gap-8 max-lg:flex-col max-lg:gap-6">
     <section data-slot="flyer-schedule-decision" class="flex min-w-0 flex-1 flex-col items-start gap-5">
       <h1 class="heading-h1 text-primary">When should it play?</h1>
       <h2 class="heading-h2 text-primary">How long?</h2>
@@ -130,7 +130,7 @@ const endDateModel = computed({
 
     <aside
       data-slot="flyer-schedule-summary"
-      class="flex w-[300px] shrink-0 flex-col items-start gap-2.5 rounded-md border border-subtle bg-raised p-4"
+      class="flex w-[300px] shrink-0 flex-col items-start gap-2.5 rounded-md border border-subtle bg-raised p-4 max-lg:w-full max-lg:max-w-sm"
     >
       <p class="label-micro text-secondary">You’re adding</p>
       <TvSlide

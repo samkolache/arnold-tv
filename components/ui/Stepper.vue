@@ -47,9 +47,9 @@ const variants: Record<Variant, Record<'root' | 'item' | 'trigger' | 'title' | '
     root: 'flex items-center',
     item: 'group flex items-center gap-3',
     trigger: 'flex flex-row-reverse items-center gap-2',
-    title: 'label-field',
+    title: 'label-field max-sm:sr-only',
     indicator: 'size-7 border-[1.5px] border-subtle label-button group-data-[state=active]:border-action-primary group-data-[state=completed]:border-status-success',
-    separator: 'h-[1.5px] w-10 bg-action-soft',
+    separator: 'h-[1.5px] w-10 bg-action-soft max-sm:w-6',
   },
 }
 

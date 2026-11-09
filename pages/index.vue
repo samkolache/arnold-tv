@@ -51,7 +51,7 @@ function topSlideCaption(thisWeek: WeekTotals, lastWeek: WeekTotals) {
 
 <template>
   <div class="space-y-8">
-    <header class="flex items-start justify-between">
+    <header class="flex items-start justify-between max-lg:gap-4">
       <div class="space-y-1">
         <ClientOnly>
           <p class="label-micro text-secondary">{{ today }}</p>
@@ -79,10 +79,10 @@ function topSlideCaption(thisWeek: WeekTotals, lastWeek: WeekTotals) {
       />
     </ClientOnly>
 
-    <div class="grid grid-cols-3 gap-6">
-      <section class="col-span-2 space-y-3">
+    <div class="grid grid-cols-3 gap-6 max-lg:grid-cols-1">
+      <section class="col-span-2 space-y-3 max-lg:col-span-1">
         <h2 class="heading-h2">Results this week</h2>
-        <div v-if="stats" class="grid grid-cols-3 gap-4">
+        <div v-if="stats" class="grid grid-cols-3 gap-4 max-sm:grid-cols-1">
           <DashboardStatCard
             label="QR scans"
             :stat="stats.scans"
