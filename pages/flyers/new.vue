@@ -112,7 +112,7 @@ function startReading(selected: File) {
   description.value = null
   file.value = selected
   previewUrl.value = URL.createObjectURL(selected)
-  return runReader((signal) => readFlyer(selected, onReadEvent, signal))
+  return runReader(async (signal) => readFlyer(await shrinkImage(selected), onReadEvent, signal))
 }
 
 function startGenerating() {
