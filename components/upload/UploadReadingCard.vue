@@ -121,11 +121,11 @@ const rows = computed(() => {
   <section
     data-slot="upload-reading-card"
     aria-live="polite"
-    class="flex w-full items-start gap-8 rounded-lg border border-subtle bg-raised p-8"
+    class="flex w-full items-start gap-8 rounded-lg border border-subtle bg-raised p-8 max-md:flex-col max-md:gap-6 max-sm:p-5"
   >
     <div
       data-slot="upload-reading-card-photo"
-      class="flex h-[300px] w-60 shrink-0 flex-col items-center justify-center overflow-hidden rounded-sm bg-sunken text-center"
+      class="flex h-[300px] w-60 shrink-0 flex-col items-center justify-center overflow-hidden rounded-sm bg-sunken text-center max-md:h-[220px] max-md:w-full"
     >
       <p
         v-if="description"

@@ -26,20 +26,20 @@ function isActive(item: NavItem) {
 </script>
 
 <template>
-  <aside class="border-r border-subtle bg-surface p-4 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center gap-2 mb-6">
+  <aside class="border-r border-subtle bg-surface p-4 flex flex-col justify-between max-lg:sticky max-lg:top-0 max-lg:z-30 max-lg:flex-row max-lg:items-center max-lg:gap-3 max-lg:border-b max-lg:border-r-0 max-lg:px-4 max-lg:py-3">
+    <div class="max-lg:flex max-lg:min-w-0 max-lg:items-center max-lg:gap-4">
+      <div class="flex items-center gap-2 mb-6 max-lg:mb-0 max-lg:min-w-0">
         <UiAvatar :name="organization?.name ?? ''" :src="organization?.logo ?? undefined" size="md" />
-        <span class="text-lg font-bold">{{ organization?.name }}</span>
+        <span class="text-lg font-bold max-lg:truncate max-sm:hidden">{{ organization?.name }}</span>
       </div>
       <nav>
-        <ul class="flex flex-col gap-1">
+        <ul class="flex flex-col gap-1 max-lg:flex-row">
           <li v-for="item in navItems" :key="item.label">
             <component
               :is="item.to ? NuxtLink : 'div'"
               :to="item.to"
               :aria-current="isActive(item) ? 'page' : undefined"
-              class="flex items-center gap-3 rounded-md px-3 py-2 transition-colors"
+              class="flex items-center gap-3 rounded-md px-3 py-2 transition-colors max-lg:gap-2"
               :class="isActive(item)
                 ? 'bg-action-primary/10 text-action-primary font-bold'
                 : 'text-primary hover:bg-action-subtle-hover'"
@@ -52,12 +52,12 @@ function isActive(item: NavItem) {
       </nav>
     </div>
 
-    <div class="flex flex-col gap-4">
-      <UiButton variant="ghost" class="w-full" :as="NuxtLink" to="/slideshow" target="_blank">
-        Open TV player
+    <div class="flex flex-col gap-4 max-lg:shrink-0">
+      <UiButton variant="ghost" class="w-full max-lg:w-auto" :as="NuxtLink" to="/slideshow" target="_blank">
+        <span class="max-sm:sr-only">Open TV player</span>
         <ExternalLink class="size-5" />
       </UiButton>
-      <div class="flex flex-col">
+      <div class="flex flex-col max-lg:hidden">
         <span>Front desk</span>
         <span class="text-secondary text-sm">Staff</span>
       </div>

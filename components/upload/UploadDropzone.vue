@@ -70,7 +70,7 @@ function onDrop(event: DragEvent) {
       data-slot="upload-dropzone-area"
       :data-dragging="dragging || undefined"
       :data-disabled="disabled || undefined"
-      class="flex flex-col items-center justify-center gap-4 rounded-lg border-[1.5px] border-dashed border-strong bg-raised px-6 py-14 transition-colors
+      class="flex flex-col items-center justify-center gap-4 rounded-lg border-[1.5px] border-dashed border-strong bg-raised px-6 py-14 transition-colors max-sm:px-4 max-sm:py-10
              data-[dragging]:border-action-primary data-[dragging]:bg-action-subtle-hover
              data-[disabled]:opacity-60"
       @dragenter.prevent="onDragOver"
@@ -86,7 +86,7 @@ function onDrop(event: DragEvent) {
         <ArrowUp class="size-6" :stroke-width="2.5" />
       </span>
 
-      <p data-slot="upload-dropzone-title" class="heading-h2 text-primary">{{ title }}</p>
+      <p data-slot="upload-dropzone-title" class="heading-h2 text-primary max-sm:text-center">{{ title }}</p>
 
       <UiButton data-slot="upload-dropzone-button" :disabled="disabled" @click="input?.click()">
         {{ buttonLabel }}

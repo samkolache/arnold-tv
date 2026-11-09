@@ -35,10 +35,10 @@ const activeFlyer = computed(() => props.flyers[props.activeIndex])
     <UiCard
         padding="md"
         data-slot="informational-slide-card"
-        class="grid grid-cols-[auto_minmax(0,1fr)] gap-6"
+        class="grid grid-cols-[auto_minmax(0,1fr)] gap-6 max-lg:grid-cols-1"
     >
-        <section data-slot="informational-slide-card-now" class="flex w-fit flex-col">
-            <header data-slot="informational-slide-card-header" class="flex items-baseline gap-3">
+        <section data-slot="informational-slide-card-now" class="flex w-fit flex-col max-lg:w-full">
+            <header data-slot="informational-slide-card-header" class="flex items-baseline gap-3 max-sm:flex-wrap max-sm:gap-x-3 max-sm:gap-y-1">
                 <h2 data-slot="informational-slide-card-title" class="heading-h3 text-primary">
                     On the gym TV now
                 </h2>
@@ -50,7 +50,7 @@ const activeFlyer = computed(() => props.flyers[props.activeIndex])
             <div
                 v-if="slide"
                 data-slot="informational-slide-card-preview"
-                class="mt-4 aspect-video h-[320px] overflow-hidden rounded-md"
+                class="mt-4 aspect-video h-[320px] overflow-hidden rounded-md max-lg:h-auto max-lg:w-full"
             >
                 <TvSlide
                     :slide="slide.slide"
@@ -61,7 +61,7 @@ const activeFlyer = computed(() => props.flyers[props.activeIndex])
             <div
                 v-else
                 data-slot="informational-slide-card-preview"
-                class="mt-4 flex aspect-video h-[320px] items-center justify-center rounded-md bg-sunken p-6 text-center"
+                class="mt-4 flex aspect-video h-[320px] items-center justify-center rounded-md bg-sunken p-6 text-center max-lg:h-auto max-lg:w-full"
             >
                 <p class="heading-h2 text-secondary">{{ activeFlyer?.title ?? 'Nothing on the TV right now' }}</p>
             </div>

@@ -34,7 +34,7 @@ const open = defineModel<boolean>('open', { default: false })
         data-slot="dialog-content"
         :data-size="size"
         :class="sizes[size]"
-        class="fixed left-1/2 top-1/2 z-50 flex max-h-[calc(100vh-4rem)] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-[22px] overflow-y-auto rounded-lg bg-raised p-8 shadow-card focus:outline-none"
+        class="fixed left-1/2 top-1/2 z-50 flex max-h-[calc(100vh-4rem)] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-[22px] overflow-y-auto rounded-lg bg-raised p-8 shadow-card focus:outline-none max-sm:gap-5 max-sm:p-5"
       >
         <header data-slot="dialog-header" class="flex flex-col gap-1.5">
           <DialogTitle data-slot="dialog-title" class="heading-h1 text-primary">{{ title }}</DialogTitle>

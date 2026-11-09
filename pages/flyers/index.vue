@@ -86,7 +86,7 @@ async function run(action: () => Promise<void>) {
 
 <template>
   <div class="space-y-8">
-    <header class="flex items-start justify-between">
+    <header class="flex items-start justify-between max-lg:gap-4">
       <h1 class="heading-h1">Flyers</h1>
       <UiButton :as="NuxtLink" to="/flyers/new">+ New flyer</UiButton>
     </header>
@@ -100,7 +100,7 @@ async function run(action: () => Promise<void>) {
 
     <section v-for="section in visibleSections" :key="section.status" class="space-y-4">
       <h2 class="heading-h2">{{ section.heading }} · {{ flyersByStatus[section.status].length }}</h2>
-      <div v-if="flyersByStatus[section.status].length" class="grid grid-cols-3 gap-6">
+      <div v-if="flyersByStatus[section.status].length" class="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1">
         <DashboardFlyerCard
           v-for="{ flyer, status } in flyersByStatus[section.status]"
           :key="flyer.id"

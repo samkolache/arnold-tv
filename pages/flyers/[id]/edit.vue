@@ -98,17 +98,17 @@ useHead({ title: () => `Edit ${flyer.value?.title ?? 'flyer'}` })
       @cancel="navigateTo('/flyers')"
     />
 
-    <main v-if="!flyer" class="flex w-full max-w-[1184px] flex-col items-start gap-4 px-8 pt-10">
+    <main v-if="!flyer" class="flex w-full max-w-[1184px] flex-col items-start gap-4 px-8 pt-10 max-sm:px-4 max-sm:pt-6">
       <h1 class="heading-h1 text-primary">Flyer not found</h1>
       <p class="body-md text-secondary">It may have been deleted.</p>
       <UiButton variant="secondary" @click="navigateTo('/flyers')">Back to flyers</UiButton>
     </main>
 
-    <main v-else class="flex w-full max-w-[1184px] flex-col items-start gap-8 px-8 pb-16 pt-10">
-      <UiInput v-model="title" label="Flyer name" maxlength="80" class="w-[480px]" />
+    <main v-else class="flex w-full max-w-[1184px] flex-col items-start gap-8 px-8 pb-16 pt-10 max-sm:gap-6 max-sm:px-4 max-sm:pt-6">
+      <UiInput v-model="title" label="Flyer name" maxlength="80" class="w-[480px] max-lg:w-full max-lg:max-w-[480px]" />
 
-      <div data-slot="flyer-edit-body" class="flex w-full items-start gap-8">
-        <aside data-slot="flyer-edit-slides" class="flex w-[300px] shrink-0 flex-col gap-3">
+      <div data-slot="flyer-edit-body" class="flex w-full items-start gap-8 max-lg:flex-col max-lg:gap-6">
+        <aside data-slot="flyer-edit-slides" class="flex w-[300px] shrink-0 flex-col gap-3 max-lg:w-full">
           <div class="flex items-baseline justify-between">
             <p class="label-micro text-secondary">Slides</p>
             <p class="caption text-secondary">{{ slides.length }} {{ slides.length === 1 ? 'slide' : 'slides' }} · {{ loopSeconds }} s on screen</p>
@@ -153,10 +153,10 @@ useHead({ title: () => `Edit ${flyer.value?.title ?? 'flyer'}` })
           </ul>
         </aside>
 
-        <section v-if="selected" data-slot="flyer-edit-slide-editor" class="flex min-w-0 flex-1 flex-col gap-6">
+        <section v-if="selected" data-slot="flyer-edit-slide-editor" class="flex min-w-0 flex-1 flex-col gap-6 max-lg:w-full">
           <TvSlide :slide="selected" :brand="organization?.brand" class="rounded-lg shadow-card" />
 
-          <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+          <div class="grid grid-cols-2 gap-x-6 gap-y-4 max-sm:grid-cols-1">
             <UiInput
               v-model="selected.headline"
               label="Headline"
